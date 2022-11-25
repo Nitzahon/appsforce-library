@@ -23,7 +23,7 @@ function UserList() {
              <div className='flexy'>
         <input type="text" placeholder='Filter...' onChange={(event)=>{setFilter(event.target.value)}}/>
                 <button type="button" className="btn btn-primary btn-sm" onClick={() => {
-                    dispatch(show({ modalType: 'ADD_USER', modalProps: { editMode:false } }))
+                    dispatch(show({ modalType: 'USER_FORM', modalProps: { editMode:false } }))
 
                 }}>Add User</button>
        </div>
