@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 
 
 const TextInput = ({ label, id, handleInput, value, error, editMode, maxLngh, name, reqMark, salary, disabled }) => {
-    const [salState, setSalState] = useState((salary && value) ? value.toLocaleString() : null)
     useEffect(() => {
         if (id && value) {
             handleInput(id, value)

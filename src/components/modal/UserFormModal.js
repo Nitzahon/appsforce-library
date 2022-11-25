@@ -1,12 +1,9 @@
 
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
 import ModalFooterAddUser from './footer/ModalFooterAddUser';
 import TextInput from '../inputs/TextInput';
-import { v4 as uuidv4 } from 'uuid';
 import './userFormModal.css'
 const UserFormModal = ({ user, editMode }) => {
-  const dispatch = useDispatch();
   const [currentFormData, setCurrentFormData] = useState({});
   const [errorList, setErrorList] = useState([]);
 

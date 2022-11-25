@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { hide } from '../../../features/modals/modalSlice';
 import {userAdded, userEdited} from '../../../features/users/usersSlice'
@@ -12,9 +12,6 @@ const ModalFooterAddUser = ({  emData, failList,  editMode }) => {
 
   const dispatch = useDispatch();
 
-  // const [uploadUsers, addUser] = useToasts();
-  const [formState, setFormState] = useState(false)
-
   const isValidName=(str)=> {
     if (!str) {
       return false;
@@ -22,31 +19,16 @@ const ModalFooterAddUser = ({  emData, failList,  editMode }) => {
 
     return str.length > 2;
   }
-  const checkObjHasProperty=(keyNamaArr, dataObj)=> {
-    let flag;
 
-    if (typeof dataObj !== "object") {
-      return false;
-    }
-    keyNamaArr.map((value) => {
-      if (!dataObj.hasOwnProperty(value) || dataObj[value] === "") {
-        flag = false;
-        return;
-      } else {
-        flag = true;
-      }
-    })
-    return flag;
-  }
   const  isValidMail=(m)=> {
     var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
     return re.test(m);
   } 
   const getNewEmpVal=(formKeys, emData)=> {
+    console.log(formKeys, emData);
     let emArr = Object.keys(emData);
-    let error = {}
     let errorList = []
-    let testArr = Object.keys(formKeys).filter(item => !emArr.includes(item));
+    let testArr = Object.keys(formKeys).filter(item => !emArr.includes(item) || emData[item]==="");
     let valid = true;
     if (testArr.length > 0) {
       testArr.forEach((id) => {
@@ -61,7 +43,7 @@ const ModalFooterAddUser = ({  emData, failList,  editMode }) => {
       valid = false;
     }
     if (!isValidName(emData["last"])) {
-      errorList.push({ msg: "בטוח שהשם תקין?", id: "last" })
+      errorList.push({ msg: "Last name needs to be at least 3 characters long", id: "last" })
       valid = false;
     }
 
@@ -108,11 +90,6 @@ const ModalFooterAddUser = ({  emData, failList,  editMode }) => {
       failList(sendForm.errorList);
     }
   }
-
-  useEffect(() => {
-    setFormState(checkObjHasProperty(["title","first", "last", "email", "streetNumber", "streetName", "city", "country" ], emData))
-  }, [emData])
-
 
   return (
     <div className="modal-row">
