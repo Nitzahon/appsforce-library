@@ -1,0 +1,11 @@
+{
+    "newUser":{
+        "first":{"req":true},
+        "last":{"req":true},
+        "email":{"req":true},
+        "streetName":{"req":true},
+        "streetNumber":{"req":true},
+        "city":{"req":true},
+        "country":{"req":true}
+    }
+}

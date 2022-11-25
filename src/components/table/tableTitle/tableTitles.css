@@ -1,0 +1,16 @@
+.table-title-container{
+    display: grid;
+    /* grid-template-columns:minmax(200px,auto) repeat(8,1fr); */
+    grid-template-columns:repeat(9,1fr);
+    justify-items: center;
+}
+.table-title-container div{
+    text-align: center;
+}
+
+.table-title-column{
+    font-size: 14px;
+    line-height: 31px;
+    letter-spacing: 0.8px;
+    color: #9B9B9B;
+}
